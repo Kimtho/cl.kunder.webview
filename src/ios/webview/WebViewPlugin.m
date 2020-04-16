@@ -12,9 +12,9 @@ NSArray* results;
 
 - (void)adjustBehavior{
   #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
-    if (@available(iOS 11.0, *)) {
-        [self.webView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
-    }
+  
+    [self.webView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    
   #endif
 }
 
@@ -54,7 +54,7 @@ NSArray* results;
 
       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
       [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-    }
+    }1
     @catch (NSException *exception) {
       NSString* reason=[exception reason];
       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: reason];
