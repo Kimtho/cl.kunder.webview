@@ -121,10 +121,9 @@ public class WebViewPlugin extends CordovaPlugin {
 
     return true;
   }
-
   private void showWebView(final String url, Boolean shouldShowLoading) {
     LOG.d(LOG_TAG, "Url: " + url);
-    Intent i = new Intent(this.cordova.getActivity(), WebViewActivity.class);
+    Intent i = new Intent(this.cordova.getActivity(), WebViewLastActivity.class);
     i.putExtra("url", url);
     i.putExtra("shouldShowLoading", shouldShowLoading);
     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

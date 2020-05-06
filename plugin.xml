@@ -42,6 +42,7 @@
 
     <source-file src="src/android/cl/kunder/webview/WebViewPlugin.java" target-dir="src/cl/kunder/webview" />
     <source-file src="src/android/cl/kunder/webview/WebViewActivity.java" target-dir="src/cl/kunder/webview" />
+    <source-file src="src/android/cl/kunder/webview/WebViewLastActivity.java" target-dir="src/cl/kunder/webview" />
 
   </platform>
 
