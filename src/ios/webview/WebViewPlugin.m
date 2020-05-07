@@ -123,11 +123,11 @@
       dispatch_async(dispatch_get_main_queue(), ^{
         webViewController = [[WebViewController alloc] init];
           webViewController.delegate = self; // esto es para poder recibir el evento de que webView se cerro
-        
-         //GRect tester = self.viewController.view.bounds;
-          
-          webViewController.startPage = url;
          
+          self.webView.backgroundColor=[UIColor systemBlueColor];
+             
+          webViewController.startPage = url;
+        webViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
           webViewController.modalPresentationStyle = UIModalPresentationFullScreen;
           [self.viewController presentViewController:webViewController animated:NO completion:nil];
         });
@@ -149,7 +149,9 @@
     @try {
 
       dispatch_async(dispatch_get_main_queue(), ^{
-        [self.viewController dismissViewControllerAnimated:NO completion:nil];
+    
+          [self.viewController dismissViewControllerAnimated:YES completion:nil];
+          [self dispose];
       });
 
       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -259,6 +261,26 @@
 
 @implementation WebViewController
 
+@synthesize delegate;
 
+- (id)init {
+  self = [super init];
+  return self;
+}
+ -(void)viewWillDisappear:(BOOL)animated
+{
+      [super viewWillDisappear:animated];
+}
+
+- (void)dismissViewControllerAnimated:(BOOL)animated {
+    NSLog(@"viewDidDisappear");
+ 
+    
+    [super viewDidDisappear:YES];
+    
+  [delegate webViewFinished];
+   
+  delegate = nil;
+}
 
 @end

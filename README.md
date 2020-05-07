@@ -18,16 +18,12 @@ under the License.
 -->
 
 # kunder-cordova-plugin-webview
-This cordova plugin enables you to open a second webview in your app.
-This webview is totally independent from the main webview, but allows you tu access plugins and other Cordova resources.
-
-It's possible to modify this plugin to allow multiple webviews.
-
-Report issues on [github issue tracker](https://github.com/kunder-lab/cl.kunder.webview/issues)
+This cordova plugin enables you to open up to 3 webviews
+Report issues on [github issue tracker](https://github.com/Kimtho/cl.kunder.webview/issues)
 
 ## Installation
 ```
-    cordova plugin add https://github.com/kunder-lab/cl.kunder.webview.git
+    cordova plugin add https://github.com/Kimtho/cl.kunder.webview.git
 ```
 
 ## Supported Platforms

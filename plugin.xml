@@ -2,9 +2,9 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
-  id="kunder-cordova-plugin-webview"
+  id="cordova-plugin-multiple-webview"
   version="2.8.0">
-  <name>Cordova Second Webview</name>
+  <name>Cordova multiple Webview</name>
   <author href="http://kunder.cl">kunder</author>
   <description>
     This cordova plugin enables you to open a second webview in your app.
@@ -12,8 +12,8 @@
 
     It's possible to modify this plugin to allow multiple webviews.
   </description>
-  <repo>https://github.com/arturokunder/cl.kunder.webview</repo>
-  <issue>https://github.com/arturokunder/cl.kunder.webview/issues</issue>
+  <repo>https://github.com/Kimtho/cl.kunder.webview</repo>
+  <issue>https://github.com/Kimtho/cl.kunder.webview/issues</issue>
   <license>Apache 2.0</license>
   <keywords>cordova, webview</keywords>
 
@@ -36,14 +36,31 @@
       </feature>
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="cl.kunder.webview.WebViewActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar" android:windowSoftInputMode="adjustResize" android:exported="true">
+      <activity 
+        android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" 
+        android:label="@string/activity_name" 
+        android:launchMode="singleTop"
+         android:name="cl.kunder.webview.WebViewActivity" 
+         android:screenOrientation="portrait" 
+         android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+         android:windowSoftInputMode="adjustResize" 
+         android:exported="true">
+      </activity>
+       <activity 
+        android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" 
+        android:label="@string/activity_name" 
+        android:launchMode="singleTop"
+         android:name="cl.kunder.webview.WebViewActivity2" 
+         android:screenOrientation="portrait" 
+         android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+         android:windowSoftInputMode="adjustResize" 
+         android:exported="true">
       </activity>
     </config-file>
 
     <source-file src="src/android/cl/kunder/webview/WebViewPlugin.java" target-dir="src/cl/kunder/webview" />
     <source-file src="src/android/cl/kunder/webview/WebViewActivity.java" target-dir="src/cl/kunder/webview" />
-    <source-file src="src/android/cl/kunder/webview/WebViewLastActivity.java" target-dir="src/cl/kunder/webview" />
-
+    <source-file src="src/android/cl/kunder/webview/WebViewActivity2.java" target-dir="src/cl/kunder/webview" />
   </platform>
 
   <!-- ios -->

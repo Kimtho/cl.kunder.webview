@@ -2,6 +2,7 @@ package cl.kunder.webview;
 
 
 import android.content.Intent;
+import android.view.View;
 
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
@@ -13,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.apache.cordova.LOG;
 
+import java.util.ArrayList;
 
 
 public class WebViewPlugin extends CordovaPlugin {
@@ -121,9 +123,23 @@ public class WebViewPlugin extends CordovaPlugin {
 
     return true;
   }
+  static ArrayList list= new ArrayList();
   private void showWebView(final String url, Boolean shouldShowLoading) {
     LOG.d(LOG_TAG, "Url: " + url);
-    Intent i = new Intent(this.cordova.getActivity(), WebViewLastActivity.class);
+    Intent i = null;
+    if(list.contains(url))
+    {
+      return;
+    }
+    if(list.size() == 0 )
+    {
+      i = new Intent(this.cordova.getActivity(), WebViewActivity.class);
+    }
+    else
+    {
+      i = new Intent(this.cordova.getActivity(), WebViewActivity2.class);
+    }
+    list.add(url);
     i.putExtra("url", url);
     i.putExtra("shouldShowLoading", shouldShowLoading);
     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -131,6 +147,7 @@ public class WebViewPlugin extends CordovaPlugin {
   }
 
   private void hideWebView() {
+    list.remove(list.size()-1);
     LOG.d(LOG_TAG, "hideWebView");
     if(subscribeCallbackContext != null){
       LOG.d(LOG_TAG, "Calling subscribeCallbackContext success");
