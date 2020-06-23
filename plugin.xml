@@ -41,7 +41,7 @@
         android:label="@string/activity_name" 
         android:launchMode="singleTop"
          android:name="cl.kunder.webview.WebViewActivity" 
-         android:screenOrientation="portrait" 
+         android:screenOrientation="userLandscape" 
          android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
          android:windowSoftInputMode="adjustResize" 
          android:exported="true">
@@ -51,7 +51,7 @@
         android:label="@string/activity_name" 
         android:launchMode="singleTop"
          android:name="cl.kunder.webview.WebViewActivity2" 
-         android:screenOrientation="portrait" 
+         android:screenOrientation="userLandscape" 
          android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
          android:windowSoftInputMode="adjustResize" 
          android:exported="true">

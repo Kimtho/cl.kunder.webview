@@ -129,7 +129,8 @@ public class WebViewPlugin extends CordovaPlugin {
     Intent i = null;
     if(list.contains(url))
     {
-      return;
+      list.remove(list.size() - 1);
+      
     }
     if(list.size() == 0 )
     {

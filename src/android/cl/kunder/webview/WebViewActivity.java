@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -31,11 +33,23 @@ public class WebViewActivity extends CordovaActivity {
         catch(Exception e){
 
         }
-        if(shouldShowLoading){
-            showLoading();
-        }
-        
+        showLoading();
+        activity2.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN);
         loadUrl("file:///android_asset/www/" + url);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                hideLoading();
+                activity2.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+            }
+        }, 700);
+
+
     }
 
     public static boolean showLoading() {
@@ -43,40 +57,23 @@ public class WebViewActivity extends CordovaActivity {
         activity2.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                dialog = new Dialog(activity2,android.R.style.Theme_Translucent_NoTitleBar);
-                ProgressBar progressBar = new ProgressBar(activity2,null,android.R.attr.progressBarStyle);
-                
-                LinearLayout linearLayout = new LinearLayout(activity2);
-                linearLayout.setOrientation(LinearLayout.VERTICAL);
+                dialog = new Dialog(activity2, android.R.style.Theme_Light_NoTitleBar_Fullscreen);
+
                 RelativeLayout layoutPrincipal = new RelativeLayout(activity2);
-                layoutPrincipal.setBackgroundColor(Color.parseColor("#d9000000"));
+
+                layoutPrincipal.setBackgroundColor(Color.parseColor("#00cbff"));
 
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.addRule(RelativeLayout.CENTER_IN_PARENT);
 
-                linearLayout.addView(progressBar);
-
-                linearLayout.setLayoutParams(params);
-
-                layoutPrincipal.addView(linearLayout);
 
                 dialog.setContentView(layoutPrincipal);
-                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialogInterface) {
 
-                    }
-                });
-                dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                    @Override
-                    public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
-                        if(keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK)
-                            return true;
-                        return false;
-                    }
-                });
 
                 dialog.show();
+                dialog.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
             }
         });
 
@@ -89,6 +86,7 @@ public class WebViewActivity extends CordovaActivity {
             @Override
             public void run() {
                 dialog.hide();
+
             }
         });
         return true;
