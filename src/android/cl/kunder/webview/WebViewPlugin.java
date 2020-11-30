@@ -136,9 +136,13 @@ public class WebViewPlugin extends CordovaPlugin {
     {
       i = new Intent(this.cordova.getActivity(), WebViewActivity.class);
     }
-    else
+    else if(list.size() == 1 )
     {
       i = new Intent(this.cordova.getActivity(), WebViewActivity2.class);
+    }
+    else 
+    {
+      i = new Intent(this.cordova.getActivity(), WebViewActivity3.class);
     }
     list.add(url);
     i.putExtra("url", url);
